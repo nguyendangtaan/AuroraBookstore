@@ -15,6 +15,7 @@ const renderUserRouter=()=>{
             path: ROUTERS.USER.CATALOG,
             component :<Catalog/> 
         }
+       
     ]
     return  (
         <MasterLayout>
