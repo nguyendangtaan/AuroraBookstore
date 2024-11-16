@@ -1,6 +1,6 @@
 
 import { ROUTERS } from "./ultils/router";
-import Homepage from "./pages/users/homepage";
+import Homepage from "./pages/users/Catalog";
 import Catalog from "./pages/users/Catalog";
 import { Routes,Route } from "react-router-dom";
 import MasterLayout from "./pages/users/theme/masterLayout";

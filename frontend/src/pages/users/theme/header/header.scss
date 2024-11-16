@@ -1,57 +1,51 @@
-@use"sass:map";
+@use "sass:map";
 @import "../../../../style/pages/theme.scss";
-
-
-// Header.scss
-// Header.scss
+@import '~bootstrap/scss/bootstrap';
 .header {
-    background-color: map-get($theme-colors ,"mau_a" );
-    padding: 1rem 0;
+  
+  background-color: map-get($theme-colors, "mau_a");
+  padding: 1rem 0;
 
-    
-    &__logo {
-      font-size: 1.5rem;
+  .navbar-toggler {
+    border: none;
+    color: white;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  &__nav {
+    .header__link {
       color: white;
-      font-weight: bold;
-    }
-    
-    &__nav {
-      
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      
-      .header__link {
-        color: white;
-        text-decoration: none;
-        font-size: 1.25rem;
-        
-        
-        &:hover {
-          text-decoration: underline;
-        }
+      text-decoration: none;
+      font-size: 1.25rem;
+
+      &:hover {
+       
+        color: #ffca28;
       }
     }
-    
-    &__icons {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      
-      
-      
-      .header__icon {
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        
-        &:hover {
-          color: #ffca28;
-        }
+  }
+
+  &__icons {
+    .header__icon {
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #ffca28;
       }
     }
-    
-    &__login {
+
+    .header__login {
       background: linear-gradient(to right, #ffca28, #ff8f00);
       color: white;
       border: none;
@@ -60,10 +54,10 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 0.3rem;
-      
+
       &:hover {
         background: linear-gradient(to right, #ff8f00, #ffca28);
       }
     }
   }
-  
+}
