@@ -1,0 +1,29 @@
+@use"sass:map";
+@import "../../../style/pages/theme.scss";
+ @import '~bootstrap/scss/bootstrap';
+
+ .home-page {
+    min-height: 800px;
+    .carousel-item {
+        border-radius:4px ;
+      img {
+        width: 100%; 
+        height: auto; 
+        object-fit: cover; 
+        border-radius:4px ;
+      }
+    }
+  
+    // Responsive với media queries
+    @media (min-width: 768px) {
+      .carousel-item img {
+        height: auto; 
+      }
+    }
+  
+    @media (min-width: 1200px) {
+      .carousel-item img {
+        height: 600px; 
+      }
+    }
+  }
