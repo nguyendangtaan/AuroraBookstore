@@ -3,5 +3,6 @@ export const ROUTERS = {
     HOME: "",
     CATALOG: "catalog",
     LOGIN: "login",
+    TESTDETAIL: "detail",
   },
 };

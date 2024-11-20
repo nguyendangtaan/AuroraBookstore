@@ -3,6 +3,7 @@ import MasterLayout from "./pages/users/theme/masterLayout";
 import Homepage from "./pages/users/homepage";
 import Catalog from "./pages/users/Catalog";
 import LoginSignup from "./pages/users/LoginAndSignup/LoginSignup";
+import BookDetail from "./pages/users/BookDetail/BookDetail";
 import { ROUTERS } from "./ultils/router";
 
 const renderUserRouter = () => {
@@ -14,6 +15,10 @@ const renderUserRouter = () => {
     {
       path: ROUTERS.USER.CATALOG,
       component: <Catalog />,
+    },
+    {
+      path: ROUTERS.USER.TESTDETAIL,
+      component: <BookDetail />,
     },
   ];
 
