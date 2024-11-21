@@ -1,0 +1,80 @@
+.book-card {
+  width: 100%;
+  max-width: 200px;
+  margin: 1rem;
+  border: none !important; /* Đảm bảo không có viền */
+  box-shadow: none !important;
+  text-align: left;
+}
+
+.book-card-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  overflow: hidden;
+}
+
+.card-body {
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+
+.book-card-img {
+  width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của container */
+  height: 20rem; /* Giữ nguyên tỷ lệ hình ảnh */
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+
+.book-card-title {
+  height: 3.06rem; /* Chiều cao cố định cho tiêu đề */
+  font-size: 1.2rem !important;
+  overflow: hidden; /* Ẩn phần tràn nếu tiêu đề quá dài */
+  text-overflow: ellipsis; /* Thêm dấu ba chấm nếu tiêu đề quá dài */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Số dòng tối đa */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.book-card-title a {
+  color: black; /* Màu đen cho đường link */
+  text-decoration: none; /* Không có dấu gạch chân */
+  font-size: 1.2rem;
+}
+
+.book-card-title a:hover {
+  text-decoration: underline; /* Xuất hiện dấu gạch chân khi hover */
+}
+
+.book-card-author {
+  color: #000000;
+  font-size: 1rem;
+}
+
+.book-card-rating {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.comment-icon,
+.star-icon {
+  width: 1rem; /* Điều chỉnh kích thước ngôi sao */
+  height: auto; /* Giữ nguyên tỷ lệ ngôi sao */
+  margin-right: 0.5rem; /* Thêm khoảng cách bên phải */
+  margin-top: -0.2rem;
+}
+
+.star-icon {
+  margin-left: 0.5rem;
+}
+
+.book-card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
