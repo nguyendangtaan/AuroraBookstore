@@ -1,4 +1,4 @@
-.book-card {
+.book-card-detail {
   width: 100%;
   max-width: 200px;
   margin: 1rem;
@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-.card-body {
+.card-body-detail {
   padding-left: 0rem !important;
   padding-right: 0rem !important;
   padding-bottom: 0rem !important;

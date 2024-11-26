@@ -14,7 +14,7 @@ export default function BookCard({ book }) {
     console.log(1);
   };
   return (
-    <Card className="book-card">
+    <Card className="book-card-detail">
       <div className="book-card-img-container" onClick={handleImageClick}>
         <Card.Img
           variant="top"
@@ -23,7 +23,7 @@ export default function BookCard({ book }) {
           className="book-card-img"
         />
       </div>
-      <Card.Body>
+      <Card.Body className="card-body-detail">
         <Card.Title className="book-card-title">
           <a href="#" onClick={handleTitleClick}>
             {book.title}

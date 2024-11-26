@@ -1,0 +1,86 @@
+.catalog-page {
+  min-height: 800px;
+  max-width: 80%;
+}
+.catalog-page .Sidebar .logo {
+  margin-bottom: 2rem;
+}
+.catalog-page .Sidebar .filter-section {
+  padding: 10px 10px;
+  border-radius: 0.5rem;
+  background-color: #f2f2f2;
+}
+.catalog-page .Sidebar .filter-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.catalog-page .Sidebar .filter-section .showMore {
+  margin-top: 3px;
+  text-decoration: none;
+  color: #942446;
+}
+.catalog-page .Sidebar .filter-section .filter-tags span {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.3rem;
+  color: #942446;
+}
+.catalog-page .Sidebar .filter-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.catalog-page .Sidebar .filter-section button {
+  margin-top: 1rem;
+}
+.catalog-page .boder-input {
+  border: 1px solid;
+}
+.catalog-page .btn-catalog {
+  background: linear-gradient(to right, rgba(240, 162, 59, 0.6196078431), rgba(206, 41, 41, 0.6196078431));
+  border-radius: 0px !important;
+  color: rgb(43, 39, 39);
+}
+.catalog-page .btn-catalog:hover {
+  color: white;
+}
+.catalog-page .boder-none {
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+.catalog-page .linkdetail {
+  text-decoration: none;
+}
+.catalog-page .card-details .comment .danhgia {
+  color: red;
+}
+.catalog-page .card-details .danhgia {
+  margin-left: 10px;
+}
+.catalog-page .card-details .start {
+  margin-bottom: 4px;
+}
+.catalog-page .book-card {
+  flex: 0 0 auto;
+  height: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  justify-content: space-between;
+}
+.catalog-page .book-card .card-title {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.catalog-page .bookImg {
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.catalog-page .book-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}/*# sourceMappingURL=Catalog.css.map */
