@@ -4,6 +4,8 @@ import Homepage from "./pages/users/homepage";
 import Catalog from "./pages/users/Catalog";
 import LoginSignup from "./pages/users/LoginAndSignup/LoginSignup";
 import BookDetail from "./pages/users/BookDetail/BookDetail";
+import AboutUs from "./pages/users/AboutUs/AboutUs";
+import NotFound from "./pages/NotFound/NotFound";
 
 import { ROUTERS } from "./ultils/router";
 
@@ -22,7 +24,12 @@ const renderUserRouter = () => {
       component: <BookDetail />,
     },
     {
-
+      path: ROUTERS.USER.ABOUTUS,
+      component: <AboutUs />,
+    },
+    {
+      path: ROUTERS.USER.ERROR,
+      component: <NotFound />,
     },
   ];
 
