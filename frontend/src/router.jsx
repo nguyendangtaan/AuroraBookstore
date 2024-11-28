@@ -6,6 +6,7 @@ import LoginSignup from "./pages/users/LoginAndSignup/LoginSignup";
 import BookDetail from "./pages/users/BookDetail/BookDetail";
 import AboutUs from "./pages/users/AboutUs/AboutUs";
 import NotFound from "./pages/NotFound/NotFound";
+import ShoppingCart from "./pages/users/ShoppingCart/ShoppingCart";
 
 import { ROUTERS } from "./ultils/router";
 
@@ -28,11 +29,14 @@ const renderUserRouter = () => {
       component: <AboutUs />,
     },
     {
+      path: ROUTERS.USER.CART,
+      component: <ShoppingCart/>,
+    },
+    {
       path: ROUTERS.USER.ERROR,
       component: <NotFound />,
-    },
-  ];
-
+    }
+  ]
   return (
     <Routes>
       <Route path={ROUTERS.USER.LOGIN} element={<LoginSignup />} />
