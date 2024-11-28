@@ -5,7 +5,5 @@ export const ROUTERS = {
     LOGIN: "login",
     TESTDETAIL: "/detail/:bookId",
     CART: "usercart",
-    ABOUTUS: "AboutUs",
-    ERROR: "404",
   },
 };
