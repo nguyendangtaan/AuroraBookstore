@@ -1,0 +1,146 @@
+.review-card {
+  margin: 2rem 0;
+}
+
+.review-form {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.review-form-content {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.review-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.custom-textarea {
+  border-radius: 0rem !important;
+}
+
+.custom-textarea:focus {
+  border: 0.1rem solid #942446 !important; /* Màu border khi textarea được chọn */
+  box-shadow: 0rem 0rem 0.6rem #942446 !important; /* Hiệu ứng shadow khi textarea được chọn */
+}
+
+.rating {
+  display: flex;
+}
+
+.star {
+  cursor: pointer;
+  color: #ccc;
+}
+
+.star.selected {
+  color: #942446;
+}
+
+.review-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap; /* Đảm bảo các phần tử con có thể xuống dòng */
+}
+
+.review-avatar {
+  margin-right: 1rem;
+}
+
+.review-content {
+  flex: 1;
+  min-width: 0; /* Đảm bảo nội dung không tràn ra ngoài */
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap; /* Đảm bảo các phần tử con có thể xuống dòng */
+}
+
+.review-date {
+  font-size: 0.875rem;
+  color: #777;
+}
+
+.review-rating {
+  display: flex;
+}
+
+.review-text {
+  margin: 0;
+  word-wrap: break-word; /* Đảm bảo nội dung không tràn ra ngoài */
+}
+
+.review-user-name {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.see-more {
+  text-align: center;
+}
+
+.btn-add-review {
+  margin-top: 0.4rem;
+  background-color: #fff !important;
+  color: #942446 !important;
+  border-radius: 0rem !important;
+  border: 0.125rem solid #942446 !important;
+  font-weight: 600 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .review-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .review-form-content {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .review-form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-review {
+    width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng */
+    margin-top: 1rem;
+  }
+
+  .review-item {
+    flex-direction: row;
+  }
+
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .review-date {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+
+  .review-text,
+  .review-user-name {
+    font-size: 1rem;
+  }
+}
