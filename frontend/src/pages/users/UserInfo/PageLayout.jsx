@@ -1,59 +1,117 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import AccountForm from "./AccountForm";
 import ContactInfo from "./ContactForm";
 import SecuritySettings from "./SecuritySetting";
-import { useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import OrderSession from "./OrderSession";
+import axios from "axios";
 
 const AccountPage = () => {
   const [userData, setUserData] = useState({
-    avatar: "https://png.pngtree.com/png-clipart/20190903/original/pngtree-worried-and-doubtful-person-png-image_4429949.jpg",
-    fullName: "Nguyễn Văn An",
-    username: "nguyenvanan",
-    birthday: { date: "1", month: "January", year: "1990" },
-    gender: "Male",
-    address: "123 Đường ABC",
-    phone: "0987654321",
-    email: "hihi@gmail.com",
-    province: "nha tu hoang dao",
-    city: "HO CHI MINH"
+    avatar: "",
+    full_name: "",
+    username: "",
+    birthday: { date: "", month: "", year: "" },
+    gender: "",
+    address: "",
+    phone: "",
+    email: "",
+    province: "",
+    city: "",
   });
 
-  const handleSave = (formData) => {
-    setUserData((prevData) => ({
-      ...prevData,
-      ...formData,
-      birthday: { ...prevData.birthday, ...formData.birthday },
-    }));
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch user data from the server
+  const fetchUserData = useCallback(async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/user-info/1");
+      const data = response.data;
+
+      // Parse birthday if it's a string
+      const birthday = typeof data.birthday === "string" ? parseBirthday(data.birthday) : data.birthday;
+      setUserData({ ...data, birthday });
+      setLoading(false);
+    } catch (err) {
+      setError("Failed to fetch user data. Please try again later.");
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUserData();
+  }, [fetchUserData]);
+
+  // Helper function to parse birthday
+  const parseBirthday = (birthdayStr) => {
+    const [year, month, date] = birthdayStr.split("-").map((part) => parseInt(part, 10));
+    return { year, month, date };
   };
 
-  const handleUpdate = (type) => {
-    if (type === "password") {
-      alert("Password updated!");
-    } else {
-      alert(`${type} updated!`);
+  const handleSave = async (formData) => {
+    try {
+      const updatedData = {
+        ...userData,
+        ...formData,
+        birthday: `${formData.birthday.year}-${formData.birthday.month.toString().padStart(2, "0")}-${formData.birthday.date.toString().padStart(2, "0")}`,
+      };
+  
+      console.log("Updated data:", updatedData);
+      const response = await axios.patch("http://127.0.0.1:8000/api/user-info/1", updatedData);
+      setUserData(response.data);
+    } catch (err) {
+      console.error("Error:", err.response ? err.response.data : err.message);
+    }
+  };
+  
+
+  // Update specific settings
+  const handleUpdate = async (type) => {
+    try {
+      if (type === "password") {
+        const response = await axios.post(`http://127.0.0.1:8000/api/user-info/1/update-password`, { password: "newPassword" });
+      } else {
+      }
+    } catch (err) {
+      console.error("Error updating data:", err);
     }
   };
 
+  // Update password directly
   const handleUpdatePassword = async () => {
     try {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve("Password updated successfully!");
-        }, 2000);
-      });
-    } catch (error) {
-      throw new Error("Error updating password");
+      const response = await axios.post("http://127.0.0.1:8000/api/user-info/1/update-password", { password: "newPassword" });
+    } catch (err) {
+      console.error("Error updating password:", err);
     }
   };
+
+  if (loading) {
+    return (
+      <Container fluid className="p-4 bg-gray-100 min-h-screen">
+        <Spinner animation="border" role="status" className="mx-auto d-block">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container fluid className="p-4 bg-gray-100 min-h-screen">
+        <Alert variant="danger">{error}</Alert>
+      </Container>
+    );
+  }
 
   return (
     <Container fluid className="p-4 bg-gray-100 min-h-screen">
       <Row>
         <Col md={3} className="mb-4">
-          <Sidebar userName={userData.fullName} avatar={userData.avatar} />
+          <Sidebar userName={userData.full_name} avatar={userData.avatar} />
         </Col>
         <Col md={9}>
           <Routes>

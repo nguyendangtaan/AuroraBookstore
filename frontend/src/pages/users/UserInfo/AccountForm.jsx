@@ -1,67 +1,123 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import axios from "axios";
 import "./userinfo.css";
 
 const AccountForm = ({ userData, onSave }) => {
   const [gender, setGender] = useState(userData.gender || "Male");
   const [avatarPreview, setAvatarPreview] = useState(userData.avatar);
+  const [avatarFile, setAvatarFile] = useState(null); // Lưu file ảnh
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState(""); // "success", "error", ""
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleFileChange = (e) => {
+  // Xử lý thay đổi file avatar
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Kiểm tra loại file
+      if (!file.type.startsWith("image/")) {
+        setErrorMessage("Please select a valid image file.");
+        setAvatarPreview(null);
+        setAvatarFile(null);
+        return;
+      }
+  
+      // Kiểm tra kích thước file (2MB)
+      if (file.size > 2 * 1024 * 1024) {
+        setErrorMessage("File size should not exceed 2MB.");
+        setAvatarPreview(null);
+        setAvatarFile(null);
+        return;
+      }
+  
+      setErrorMessage(""); // Xóa lỗi nếu file hợp lệ
+  
+      // Hiển thị preview trước
       const reader = new FileReader();
-      reader.onload = () => {
-        setAvatarPreview(reader.result);
-      };
+      reader.onload = () => setAvatarPreview(reader.result);
       reader.readAsDataURL(file);
+  
+      try {
+        // Upload file lên dịch vụ lưu trữ
+        const uploadData = new FormData();
+        uploadData.append("file", file);
+        const uploadResponse = await axios.post(
+          "http://127.0.0.1:8000/api/upload-avatar", 
+          uploadData,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+        setAvatarFile(uploadResponse.data.url); 
+      } catch (uploadError) {
+        console.error("Error uploading file:", uploadError);
+        setErrorMessage("Error uploading avatar. Please try again.");
+      }
     }
   };
-
+  
   const getFormData = () => ({
-    avatar: avatarPreview,
     username: document.getElementById("username").value,
-    birthday: {
-      date: document.getElementById("birthday-date").value,
-      month: document.getElementById("birthday-month").value,
-      year: document.getElementById("birthday-year").value,
-    },
+    full_name: document.getElementById("full_name").value,
+    birthday: `${document.getElementById("birthday-year").value}-${document.getElementById("birthday-month").value}-${document.getElementById("birthday-date").value}`,
     gender,
     address: document.getElementById("address").value,
+    province: document.getElementById("province").value,
+    city: document.getElementById("city").value,
   });
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setStatus(""); // Reset status
-
+    setStatus("");
+  
     const formData = getFormData();
+    
+    if (avatarFile) {
+      formData.avatar = avatarFile;
+    }
+  
     try {
-      await onSave(formData); 
+      const response = await axios.patch(
+        `http://127.0.0.1:8000/api/user-info/${userData.id}`,
+        formData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+  
       setStatus("success");
+      onSave && onSave(response.data);
     } catch (error) {
       setStatus("error");
+      setErrorMessage(
+        error.response?.data?.message || "An error occurred. Please try again."
+      );
     } finally {
-      setTimeout(()=> setIsLoading(false),3000);
-      setTimeout(() => setStatus(""), 4000); 
+      setIsLoading(false);
+      setTimeout(() => setStatus(""), 3000);
     }
   };
-
-  const SaveButton = ({ isLoading, status }) => (
-    <button
-      type="submit"
-      disabled={isLoading}
-      className={`mt-3 py-2 px-4 rounded-lg shadow-lg transform transition duration-200
-        ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-[#942446] hover:bg-[#9c2f5b]"} 
-        ${status === "success" ? "bg-green-500" : ""}
-        ${status === "error" ? "bg-red-500" : ""}
-        text-white`}
-    >
-      {isLoading ? (
-        <div className="flex items-center">
+  
+  const SaveButton = ({ isLoading, status }) => {
+    const getButtonLabel = () => {
+      if (isLoading) return "Saving...";
+      if (status === "success") return "Saved Successfully";
+      if (status === "error") return "Error Saving";
+      return "Save Changes";
+    };
+  
+    return (
+      <button
+        type="submit"
+        disabled={isLoading}
+        className={`mt-3 py-2 px-4 rounded-lg shadow-lg transform transition duration-200
+          ${isLoading ? "bg-gray-500 cursor-not-allowed" : "bg-[#942446] hover:bg-[#9c2f5b]"}
+          ${status === "success" ? "bg-green-500" : ""}
+          ${status === "error" ? "bg-red-500" : ""}
+          text-white`}
+      >
+        {isLoading ? (
           <svg
-            className="animate-spin h-5 w-5 mr-2 text-white"
+            className="animate-spin h-5 w-5 mr-2 text-white inline"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -80,18 +136,12 @@ const AccountForm = ({ userData, onSave }) => {
               d="M4 12a8 8 0 018-8v8H4z"
             ></path>
           </svg>
-          Saving...
-        </div>
-      ) : status === "success" ? (
-        "Saved Successfully"
-      ) : status === "error" ? (
-        "Error Saving"
-      ) : (
-        "Save Changes"
-      )}
-    </button>
-  );
-
+        ) : null}
+        {getButtonLabel()}
+      </button>
+    );
+  };
+  
   return (
     <form className="p-4" onSubmit={handleSubmit}>
       <div className="d-flex mb-5">
@@ -119,41 +169,43 @@ const AccountForm = ({ userData, onSave }) => {
             Choose File
           </Button>
         </div>
-        <div className="flex-grow-1">
-          <Row>
-            <Col>
-              <Form.Group controlId="username" className="mb-3">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" id="username" defaultValue={userData.fullName} />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group controlId="username" className="mb-3">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" id="username" defaultValue={userData.username} />
-              </Form.Group>
-            </Col>
-          </Row>
-        </div>
+        {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+      </div>
+
+      <div className="form-fields">
+        <Row>
+          <Col>
+            <Form.Group controlId="full_name" className="mb-3">
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control type="text" id="full_name" defaultValue={userData.full_name} />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Group controlId="username" className="mb-3">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" id="username" defaultValue={userData.username} />
+            </Form.Group>
+          </Col>
+        </Row>
       </div>
       <Form.Group controlId="birthday" className="mb-4">
         <Form.Label className="text-gray-600">Birthday</Form.Label>
         <Row>
           <Col md={4}>
-            <Form.Select
-              id="birthday-date"
-              defaultValue={userData.birthday.date}
-              className="p-3 border rounded-lg shadow-md"
-            >
-              <option value="">Date</option>
-              {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
-                <option key={date} value={date}>
-                  {date}
-                </option>
-              ))}
-            </Form.Select>
+          <Form.Select
+            id="birthday-date"
+            defaultValue={userData.birthday?.date || ""}
+            className="p-3 border rounded-lg shadow-md"
+          >
+            <option value="">Date</option>
+            {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
+              <option key={date} value={date}>
+                {date}
+              </option>
+            ))}
+          </Form.Select>
           </Col>
           <Col md={4}>
             <Form.Select
