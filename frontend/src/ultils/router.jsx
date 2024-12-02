@@ -8,4 +8,12 @@ export const ROUTERS = {
     ABOUTUS: "AboutUs",
     ERROR:"404"
   },
+  ADMIN:{
+    DASHBOARD: 'dashboard',
+    USERS: 'users',
+    PRODUCTS: 'products',
+    ORDER: 'order',
+    ADDBOOK:"add-book",
+    EDITBOOK:"edit-book/:id"
+  },
 };
