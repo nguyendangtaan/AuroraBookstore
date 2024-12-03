@@ -1,0 +1,23 @@
+.edit-book-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  h1, h3 {
+    color: #4c4c4c;
+    margin-bottom: 20px;
+  }
+  
+  .form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  button {
+    margin-left: 10px;
+  }
+  .input-infor-book{
+    margin-bottom: 30px;
+  }
