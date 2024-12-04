@@ -6,7 +6,8 @@ export const ROUTERS = {
     TESTDETAIL: "/detail/:bookId",
     CART: "usercart",
     ABOUTUS: "AboutUs",
-    ERROR:"404"
+    ERROR:"404",
+    USERINFO:"user/*"
   },
   ADMIN:{
     DASHBOARD: 'dashboard',

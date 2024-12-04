@@ -8,6 +8,7 @@ import BookDetail from "./pages/users/BookDetail/BookDetail";
 import AboutUs from "./pages/users/AboutUs/AboutUs";
 import NotFound from "./pages/NotFound/NotFound";
 import ShoppingCart from "./pages/users/ShoppingCart/ShoppingCart";
+import AccountPage from "./pages/users/UserInfo/PageLayout"
 import Products from "./pages/admin/Products";
 import AddBook from "./pages/admin/Products/Addproducts";
 import { ROUTERS } from "./ultils/router";
@@ -21,6 +22,8 @@ const userRoutes = [
   { path: ROUTERS.USER.ABOUTUS, component: <AboutUs /> },
   { path: ROUTERS.USER.CART, component: <ShoppingCart /> },
   { path: ROUTERS.USER.ERROR, component: <NotFound /> },
+  {path: ROUTERS.USER.USERINFO,component: <AccountPage />,},
+  
 ];
 
 const adminRoutes = [
