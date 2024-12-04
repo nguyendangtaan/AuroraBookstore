@@ -303,6 +303,19 @@
       "LIKE": 1220,
       "COMMENT": 540,
       "PRICE": 18.49
+    },
+    {
+      "BNAME": "Nguyễn Đăng Tân",
+      "ISBN": "9789190000000",
+      "AUTHOR": "Leigh Bardugo",
+      "LANGUAGE": "2424",
+      "PUBYEAR": "122",
+      "DESCRIPTION": "dsdsd",
+      "URL": "ol",
+      "PAGE": "121",
+      "GENRES": "Non-fiction",
+      "PRICE": "213",
+      "BID": 21
     }
   ],
   "bestsellers": [
