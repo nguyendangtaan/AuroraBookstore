@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->id();
+        Schema::create('authors', function (Blueprint $table) {
+            $table->bigIncrements('auid');
             $table->timestamps();
+
+            $table->string('auname', 40);
+            $table->integer('audob');
+            $table->string('aunation', 30);
+            $table->string('auurl', 100);
+            $table->string('audes', 1024);
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('authors');
     }
 };
