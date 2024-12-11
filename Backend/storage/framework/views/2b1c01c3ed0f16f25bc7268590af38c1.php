@@ -191,4 +191,4 @@
         </button>
     </div>
 </div>
-<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\vendor\laravel\framework\src\Illuminate\Foundation\Providers/../resources/exceptions/renderer/components/theme-switcher.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\vendor\laravel\framework\src\Illuminate\Foundation\resources\exceptions\renderer\components\theme-switcher.blade.php ENDPATH**/ ?>

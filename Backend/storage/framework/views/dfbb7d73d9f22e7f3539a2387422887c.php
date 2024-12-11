@@ -5,4 +5,4 @@
     <?php echo e($slot); ?>
 
 </section>
-<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\vendor\laravel\framework\src\Illuminate\Foundation\Providers/../resources/exceptions/renderer/components/card.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\vendor\laravel\framework\src\Illuminate\Foundation\resources\exceptions\renderer\components\card.blade.php ENDPATH**/ ?>
