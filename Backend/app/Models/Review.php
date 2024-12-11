@@ -1,31 +1,32 @@
 <?php
 
-// app/Models/Review.php
-
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'detail',
+        'rating',
+        'approved',
+        'customer_id',
+        'book_id',
+    ];
 
-    protected $table = 'reviews'; // Tên bảng
-    protected $primaryKey = 'rateid'; // Khóa chính
-
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class, 'cusid', 'cusid');
+    public function customer(){
+        return $this->belongsTo(User::class);
     }
 
-    public function book()
-    {
-        return $this->belongsTo(Book::class, 'bid', 'bid');
+    public function book(){
+        return $this->belongsTo(Book::class);
     }
 
-    public function order()
-    {
-        return $this->belongsTo(Order::class, 'orderid', 'orderid');
+    public function gerCreatedAttribute($value){
+        return Carbon::parse($value)->diffForHumans();
     }
 }

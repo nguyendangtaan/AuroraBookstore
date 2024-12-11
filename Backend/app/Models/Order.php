@@ -1,26 +1,38 @@
 <?php
 
-// app/Models/Orderr.php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orderr extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    protected $table = 'orders'; // Tên bảng
-    protected $primaryKey = 'orderid'; // Khóa chính
+    protected $fillable = [
+        'total_price',
+        'order_address',
+        'payment_type',
+        'payment_status',
+        'delivered_at',
+        'customer_id',
+        'coupon_id'
+    ];
 
-    public function customer()
+    public function setStatus($status)
     {
-        return $this->belongsTo(Customer::class, 'cusid', 'cusid');
+        $this->payment_status = $status;
     }
 
-    public function orderBooks()
-    {
-        return $this->hasMany(OrderBook::class, 'orderid', 'orderid');
+    public function customer() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function books(){
+        return $this->belongsToMany(Book::class);
+    }
+
+    public function coupon() {
+        return $this->belongsTo(Coupon::class);
     }
 }

@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->bigIncrements('auid');
+        Schema::create('coupons', function (Blueprint $table) {
+            $table->id('coupon_id');
+            $table->string('coupon_name');
+            $table->integer('discount');
+            $table->string('valid_until');
             $table->timestamps();
-
-            $table->string('auname', 40);
-            $table->integer('audob');
-            $table->string('aunation', 30);
-            $table->string('auurl', 100);
-            $table->string('audes', 1024);
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('coupons');
     }
 };

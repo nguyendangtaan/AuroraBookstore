@@ -1,7 +1,5 @@
 <?php
 
-// app/Models/Book.php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,26 +9,34 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $table = 'books'; // Tên bảng
-    protected $primaryKey = 'bid'; // Khóa chính
+    protected $fillable = [
+        'book_name',
+        'isbn',
+        'slug',
+        'category',
+        'language',
+        'publish_year',
+        'page',
+        'book_qty',
+        'book_price',
+        'desc',
+        'thumbnail',
+        'status'
+    ];
 
-    public function author()
-    {
-        return $this->belongsTo(Author::class, 'auid', 'auid');
+    public function author(){
+        return $this->belongsTo(Author::class);
     }
 
-    public function reviews()
-    {
-        return $this->hasMany(Review::class, 'bid', 'bid');
+    public function orders(){
+        return $this->belongsToMany(Order::class);
     }
 
-    public function orderBooks()
-    {
-        return $this->hasMany(OrderBook::class, 'bid', 'bid');
+    public function reviews(){
+        return $this->hasMany(Review::class)->with('customer')->where('approved',1)->latest();
     }
 
-    public function cartBooks()
-    {
-        return $this->hasMany(CartBook::class, 'bid', 'bid');
+    public function getRouteKeyName(){
+        return 'slug';
     }
 }
