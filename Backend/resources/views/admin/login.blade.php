@@ -53,13 +53,13 @@
   </head>
   <body>
     <div id="main-wrapper" class="container">
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-5">
         @session('error')
             <div class="alert alert-danger my-2">
                 {{ session('error')}}
             </div>
         @endsession
-            <div class="col-xl-10 mt-4">
+            <div class="col-xl-10 mt-5">
                 <div class="card border-0">
                     <div class="card-body p-0">
                         <div class="row no-gutters">
@@ -75,7 +75,7 @@
 
                                     <form action={{route('admin.auth')}} method="post">
                                         @csrf
-                                        <div class="form-group">
+                                        <div class="form-group mb-3">
                                             <label for="floatingInput">Email address*</label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" name="email" placeholder="name@example.com">
                                             @error('email')
@@ -85,7 +85,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="form-group mb-5">
+                                        <div class="form-group mb-3">
                                             <label for="floatingPassword">Password*</label>
                                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" name="password" placeholder="Password">
                                             @error('password')

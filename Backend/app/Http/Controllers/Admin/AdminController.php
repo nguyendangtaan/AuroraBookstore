@@ -43,7 +43,7 @@ class AdminController extends Controller
                 'password' => $request->password,
             ])){
                 $request->session()->regenerate();
-                return redirect()->route('admin/dashboard');
+                return redirect()->route('admin.index');
             } else{
                 return redirect()->route('admin.login')->with([
                     'error' => 'Thông tin tài khoản sai, vui lòng thử lại!'

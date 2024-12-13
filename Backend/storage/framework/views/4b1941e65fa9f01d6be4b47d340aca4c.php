@@ -168,8 +168,8 @@ unset($__sessionArgs); ?>
         }
 
 
-        handleImageInputChanged('author_img', 'author_img_preview');
         handleImageInputChanged('thumbnail', 'thumbnail_preview')
+        handleImageInputChanged('author_img', 'author_img_preview');
     </script>
 </html>
-<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views\admin\layouts\app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views/admin/layouts/app.blade.php ENDPATH**/ ?>

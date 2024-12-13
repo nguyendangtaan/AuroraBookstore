@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aurora Admin - @yield('title')</title>
+    <title>Aurora @yield('title')</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!-- Fontawesome CSS -->
@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
         <!-- Dashboard CSS -->
         <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -69,7 +70,7 @@
     @include('admin.layouts.header')
     <div class="container-fluid">
       <!-- content here -->
-    @include('admin.layouts.sidebar')
+    @yield('content')
     </div>
     <!-- Jquery JS -->
     <script
@@ -84,6 +85,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js" integrity="sha512-6rE6Bx6fCBpRXG/FWpQmvguMWDLWMQjPycXMr35Zx/HRD9nwySZswkkLksgyQcvrpYMx0FELLJVBvWFtubZhDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Sweet alert js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @session('success')
+        <script>
+            Swal.fire({
+                position: "mid",
+                icon: "success",
+                title: "{{session('success')}}",
+                showConfirmButton: false,
+                timer: 2500
+                });
+        </script>
+    @endsession
+    @session('error')
+        <script>
+            Swal.fire({
+                position: "mid",
+                icon: "error",
+                title: "{{session('error')}}",
+                showConfirmButton: false,
+                timer: 2500
+                });
+        </script>
+    @endsession
+
     <script>
         $(document).ready(function() {
             //datatables
@@ -110,4 +134,27 @@
         }
     </script>
     <script src="{{asset('js/colors.js')}}"></script>
+    <script>
+        function readUrl(input, image){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    document.getElementById(image).classList.remove('d-none');
+                    document.getElementById(image).setAttribute('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        function handleImageInputChanged(input, image){
+            document.getElementById(input).addEventListener('change', function(){
+                readUrl(this, image);
+            })
+        }
+
+
+        handleImageInputChanged('thumbnail', 'thumbnail_preview')
+        handleImageInputChanged('author_img', 'author_img_preview');
+    </script>
 </html>

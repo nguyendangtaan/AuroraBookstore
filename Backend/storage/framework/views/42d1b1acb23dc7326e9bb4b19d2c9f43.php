@@ -63,4 +63,4 @@
         </div>
     </div>
 </div>
-<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views\admin\layouts\sidebar.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views/admin/layouts/sidebar.blade.php ENDPATH**/ ?>

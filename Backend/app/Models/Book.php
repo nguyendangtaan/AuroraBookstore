@@ -9,9 +9,10 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'book_id';
+
     protected $fillable = [
         'book_name',
-        'isbn',
         'slug',
         'category',
         'language',
@@ -21,7 +22,8 @@ class Book extends Model
         'book_price',
         'desc',
         'thumbnail',
-        'status'
+        'status',
+        'author_id'
     ];
 
     public function author(){

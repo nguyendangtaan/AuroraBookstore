@@ -53,7 +53,7 @@
   </head>
   <body>
     <div id="main-wrapper" class="container">
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-5">
         <?php $__sessionArgs = ['error'];
 if (session()->has($__sessionArgs[0])) :
 if (isset($value)) { $__sessionPrevious[] = $value; }
@@ -67,7 +67,7 @@ if (isset($__sessionPrevious) && !empty($__sessionPrevious)) { $value = array_po
 if (isset($__sessionPrevious) && empty($__sessionPrevious)) { unset($__sessionPrevious); }
 endif;
 unset($__sessionArgs); ?>
-            <div class="col-xl-10 mt-4">
+            <div class="col-xl-10 mt-5">
                 <div class="card border-0">
                     <div class="card-body p-0">
                         <div class="row no-gutters">
@@ -83,7 +83,7 @@ unset($__sessionArgs); ?>
 
                                     <form action=<?php echo e(route('admin.auth')); ?> method="post">
                                         <?php echo csrf_field(); ?>
-                                        <div class="form-group">
+                                        <div class="form-group mb-3">
                                             <label for="floatingInput">Email address*</label>
                                             <input type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -107,7 +107,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
 
-                                        <div class="form-group mb-5">
+                                        <div class="form-group mb-3">
                                             <label for="floatingPassword">Password*</label>
                                             <input type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

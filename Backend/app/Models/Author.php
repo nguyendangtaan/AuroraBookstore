@@ -9,6 +9,7 @@ class Author extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'author_id';
     protected $fillable = [
         'author_name',
         'author_slug',
@@ -23,6 +24,6 @@ class Author extends Model
     }
 
     public function getRouteKeyName(){
-        return 'slug';
+        return 'author_slug';
     }
 }
