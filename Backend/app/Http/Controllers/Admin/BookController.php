@@ -17,6 +17,7 @@ class BookController extends Controller
      */
     public function index()
     {
+        $books = Book::with('author')->latest()->get();
         return view('admin.books.index')->with([
             'books' => Book::latest()->get()
         ]);

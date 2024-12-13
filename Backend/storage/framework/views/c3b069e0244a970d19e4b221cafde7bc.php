@@ -54,7 +54,7 @@ endif;
 unset($__errorArgs, $__bag); ?>" id="floatingSelect" name="author_id">
                                         <option value="">Chọn tác giả</option>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($author->author_id); ?>" <?php echo e(old('author_id') == $author->author_id ? 'selected' : ''); ?>>
+                                            <option value="<?php echo e($author->author_id); ?>" <?php echo e(old('author_id', $book->author_id) == $author->author_id ? 'selected' : ''); ?>>
                                                 <?php echo e($author->author_name); ?>
 
                                             </option>
@@ -290,13 +290,13 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="1" name="status" id="status_instock" <?php if($book->status == 1): echo 'checked'; endif; ?>>
                                         <label class="form-check-label" for="status_instock">
-                                            Instock
+                                            Đang bán
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="0" name="status" id="status_outofstock" <?php if($book->status == 0): echo 'checked'; endif; ?>>
                                         <label class="form-check-label" for="status_outofstock">
-                                            Out of stock
+                                            Tạm ngưng
                                         </label>
                                     </div>
                                 </div>
