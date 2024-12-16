@@ -31,7 +31,6 @@ class AuthorController extends Controller
             'success' => true,
             'data' => [
                 'author' => new AuthorResource($author), // Resource cho tác giả
-                'books' => $author->books               // Danh sách sách
             ]
         ], 200);
     }
