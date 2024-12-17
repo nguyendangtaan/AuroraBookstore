@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import "./homepage.scss";
 import images from "../../../assets/users/img.js";
 import intance from "../../../Axios/index.js";
+import axios from "axios";
 const Homepage = () => {
   const arrivalsRef = useRef(null);
   const bestsellersRef = useRef(null);
@@ -129,19 +130,18 @@ const Homepage = () => {
     fetchbestsellers(); 
   }, []);
 
-  const fetchauthors = async () => {
-    try {
-      const response = await intance.get("/authors");
-      setauthors(response.data); 
-    } catch (error) {
-      console.error("Error fetching authors:", error);
-    }
-  };
-  console.log(arrivalsbooks)
-
+  //gọi API author 
+  const [author, setAuthor] = useState([]); 
+  
   useEffect(() => {
-    fetchauthors(); 
-  }, []);
+    axios
+      .get(`http://127.0.0.1:8000/api/authors`) 
+      .then((res) => {
+        setAuthor(res.data.data);
+      })
+  }, []); 
+  if (!author || Object.keys(author).length === 0) return <p>Không tìm thấy tác giả!</p>;
+
   return (
     <Container fluid className="home-page">
       {/* Banner Section */}
@@ -290,16 +290,33 @@ const Homepage = () => {
               ref={authorsRef}
               onScroll={() => checkScrollPosition(authorsRef, setAuthorsScroll)}
             >
-              {authors.map((author) => (
-                <div key={author.id} className="author-card">
-                  <img
-                    src={author.image}
-                    alt={author.name}
-                    className="author-img"
-                  />
-                  <p className="autthorName">{author.name}</p>
-                  <small className="countBook">{author.booksCount} books</small>
-                </div>
+              {author.map((author) => (
+               <Link className="linkdetail" to={`/authordetail/${author.author_id}`}>
+                 <Card key={author.author_id} className="book-card  ">
+                   <div className="bookImg"><Card.Img variant="top" src={`${author.author_img}`} alt={author.author_name} /></div>
+                   <Card.Body className="Card-body ">
+                     <div className="cardTittle"> <Card.Title>{author.author_name}</Card.Title></div>
+                     <div className="cardAuthor"></div> <Card.Text>{author.nationality}</Card.Text>
+                     <div className="card-details d-flex">
+                       <div className="comment"> <FaComment /> {author.COMMENT}128</div>
+                       <div className="danhgia"><FaStar className="start" /> {author.LIKE}248</div>
+                     </div>
+                   </Card.Body>
+                 </Card>
+               </Link>
+                // <Link className="linkdetail" to={`/authordetail/${author.author_id}`}>
+                //    <Card key={author.author_id} className="book-card  ">
+                //     <div key={author.author_id} className="author-card">
+                //       <img
+                //         src={`${author.author_img}`}
+                //         alt={author.author_name}
+                //         className="author-img"
+                //       />
+                //       <p className="autthorName">{author.author_name}</p>
+                //       <small className="countBook">{author.nationality}</small>
+                //     </div>
+                //    </Card>
+                // </Link>
               ))}
             </div>
             {authorsScroll.showRight && (

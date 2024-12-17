@@ -18,7 +18,7 @@ export default function AuthorDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/authors/${id}/books`) 
+      .get(`http://127.0.0.1:8000/api/authordetail/${id}`) 
       .then((res) => {
         if (res.data.success) {
           setAuthor(res.data.data.author);
@@ -79,12 +79,12 @@ export default function AuthorDetail() {
               </div>
               <div className="info-item">
                 <strong>Numbers of books:</strong>
-                {author.nationality}
+                60
                 {/* add api */}
               </div>
               <div className="info-item">
                 <strong>Books sale:</strong>
-                {author.nationality}
+                128
                 {/* add api */}
               </div>
 

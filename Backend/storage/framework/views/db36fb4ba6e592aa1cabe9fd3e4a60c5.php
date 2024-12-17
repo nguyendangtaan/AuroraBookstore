@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Thêm tác giả
+    Cập nhật tác giả
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -9,14 +9,15 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="card-header bg-white">
-                    <h3 class="mt-2">Thêm tác giả mới</h3>
+                    <h3 class="mt-2">Cập nhật</h3>
                     <hr>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 mx-auto">
-                            <form action="<?php echo e(route('admin.authors.store')); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?php echo e(route('admin.authors.update', $author->author_slug)); ?>" method="post" enctype="multipart/form-data">
                                 <?php echo csrf_field(); ?>
+                                <?php echo method_field('PUT'); ?>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control <?php $__errorArgs = ['author_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -25,8 +26,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="floatingInput" name="author_name" placeholder="Tên sách"
-                                    value="<?php echo e(old('author_name')); ?>">
+unset($__errorArgs, $__bag); ?>" id="floatingInput" name="author_name" placeholder="Tên tác giả"
+                                    value="<?php echo e(old('author_name', $author->author_name)); ?>">
                                     <label for="floatingInput">Tên tác giả*</label>
                                     <?php $__errorArgs = ['author_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -51,7 +52,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="floatingInput" name="nationality" placeholder="Quốc tịch"
-                                    value="<?php echo e(old('nationality')); ?>">
+                                    value="<?php echo e(old('nationality', $author->nationality)); ?>">
                                     <label for="floatingInput">Quốc tịch*</label>
                                     <?php $__errorArgs = ['nationality'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -76,7 +77,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="floatingInput" name="yob" placeholder="Năm sinh"
-                                    value="<?php echo e(old('yob')); ?>">
+                                    value="<?php echo e(old('yob', $author->yob)); ?>">
                                     <label for="floatingInput">Năm sinh*</label>
                                     <?php $__errorArgs = ['yob'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -101,8 +102,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="floatingInput" name="author_desc" placeholder="Mô tả">
-                                        <?php echo e(old('author_desc')); ?>
+unset($__errorArgs, $__bag); ?>" id="floatingInput" name="author_desc" placeholder="Về tác giả ...">
+                                        <?php echo e(old('author_desc', $author->author_desc)); ?>
 
                                     </textarea>
                                     <?php $__errorArgs = ['author_desc'];
@@ -143,9 +144,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="mt-2">
-                                    <img src="#" alt="Image Preview" id="author_img_preview" class="d-none img-fluid rounded mb-2" width="100" height="150">
+                                    <img src="<?php echo e(asset($author->author_img)); ?>" alt="" id="thumbnail_preview" class="image-fluid rounded mb-2" width="100" height="150">
                                 </div>
-
 
                                 <div class="mb-2">
                                     <button type="submit" class="btn btn-sm btn-dark">
@@ -163,4 +163,4 @@ unset($__errorArgs, $__bag); ?>
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views/admin/authors/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views/admin/authors/edit.blade.php ENDPATH**/ ?>
