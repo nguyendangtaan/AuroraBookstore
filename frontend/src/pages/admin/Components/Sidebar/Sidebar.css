@@ -1,0 +1,48 @@
+.sidebar {
+  background-color: #942446;
+  color: white;
+  min-height: 100vh;
+}
+
+.sidebar-header h3 {
+  padding: 17px;
+  color: #ffee9b;
+  margin-bottom: 30px;
+  font-style: italic;
+  font-weight: bold;
+}
+.nav-item-admin{
+  margin-bottom: 20px;
+}
+.nav-link-admin {
+  color:  #fff ;
+  font-size: 20px ;
+  margin-left: 17px;
+  text-decoration: none;
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+.nav-admin-icon{
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.nav-item-admin:hover {
+  background-color:#ffee9b;
+  border-radius: 5px;
+
+}
+.nav-link-admin:hover{
+  color: black;
+}
+.sidebar-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; 
+  }
+}
