@@ -18,7 +18,7 @@ export default function BookCard({ book }) {
       <div className="book-card-img-container" onClick={handleImageClick}>
         <Card.Img
           variant="top"
-          src={book.image}
+          src={`${book.thumbnail}`}
           alt="Book cover"
           className="book-card-img"
         />
@@ -26,7 +26,7 @@ export default function BookCard({ book }) {
       <Card.Body className="card-body-detail">
         <Card.Title className="book-card-title">
           <a href="#" onClick={handleTitleClick}>
-            {book.title}
+            {book.book_name}
           </a>
         </Card.Title>
         <Card.Text className="book-card-author">{book.author}</Card.Text>
@@ -35,7 +35,7 @@ export default function BookCard({ book }) {
           {book.totalReviews}
           <FaRegStar className="star-icon" /> {book.avgRating}
         </div>
-        <div className="book-card-price">${book.price}</div>
+        <div className="book-card-price">${book.book_price}</div>
       </Card.Body>
     </Card>
   );

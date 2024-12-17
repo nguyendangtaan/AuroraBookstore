@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Add new coupon
+    Edit new coupon
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -9,14 +9,15 @@
             <div class="row mt-2">
                 <div class="col-md-12">
                     <div class="card-header bg-white">
-                        <h3 class="mt-2">Add Coupon</h3>
+                        <h3 class="mt-2">Edit Coupon</h3>
                         <hr>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mx-auto">
-                                <form action="<?php echo e(route('admin.coupons.store')); ?>" method="post">
+                                <form action="<?php echo e(route('admin.coupons.update',$coupon->id)); ?>" method="post">
                                     <?php echo csrf_field(); ?>
+                                    <?php echo method_field("PUT"); ?>
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -27,7 +28,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="floatingInput" 
                                             name="name" placeholder="Name"
-                                            value="<?php echo e(old('name')); ?>">
+                                            value="<?php echo e(old('name',$coupon->name)); ?>">
                                         <label for="floatingInput">Name*</label>
                                         <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -52,7 +53,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="floatingInput" 
                                             name="discount" placeholder="Discount"
-                                            value="<?php echo e(old('discount')); ?>">
+                                            value="<?php echo e(old('discount',$coupon->discount)); ?>">
                                         <label for="floatingInput">Discount*</label>
                                         <?php $__errorArgs = ['discount'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -77,8 +78,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="floatingInput" 
                                             name="valid_until" placeholder="Validity"
-                                            min="<?php echo e(\Carbon\Carbon::now()->addDays(1)); ?>"
-                                            value="<?php echo e(\Carbon\Carbon::now()->format('Y-m-d\Th:i:s')); ?>"
+                                            value="<?php echo e($coupon->valid_until); ?>"
                                         >
                                         <label for="floatingInput">Validity*</label>
                                         <?php $__errorArgs = ['valid_until'];
@@ -108,4 +108,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views/admin/coupons/create.blade.php ENDPATH**/ ?>
+
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\AuroraBookstore\Backend\resources\views\admin\coupons\edit.blade.php ENDPATH**/ ?>

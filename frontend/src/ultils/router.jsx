@@ -5,10 +5,11 @@ export const ROUTERS = {
     CATALOG: "/catalog",
     LOGIN: "/login",
     TESTDETAIL: "/detail/:bookId",
-    CART: "/usercart",
-    ABOUTUS: "/AboutUs",
-    ERROR: "/404",
-    USERINFO: "/user/*"
+    CART: "usercart",
+    ABOUTUS: "AboutUs",
+    ERROR:"404",
+    USERINFO:"user/*",
+    AUTHORDETAIL: "authordetail/:id",
   },
 
   ADMIN:{
