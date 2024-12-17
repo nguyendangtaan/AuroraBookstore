@@ -7,7 +7,8 @@ export const ROUTERS = {
     CART: "usercart",
     ABOUTUS: "AboutUs",
     ERROR:"404",
-    USERINFO:"user/*"
+    USERINFO:"user/*",
+    AUTHORDETAIL: "authordetail/:id",
   },
   ADMIN:{
     DASHBOARD: 'dashboard',

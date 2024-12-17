@@ -40,7 +40,7 @@
 
                                     </td>
                                     <td>
-                                        <?php echo e($book->author->author_name); ?>
+                                        <?php echo e($book->author ? $book->author->author_name : 'N/A'); ?>
 
                                     </td>
                                     <td><?php echo e($book->book_qty); ?></td>

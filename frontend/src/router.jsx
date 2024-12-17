@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import ShoppingCart from "./pages/users/ShoppingCart/ShoppingCart";
 import AccountPage from "./pages/users/UserInfo/PageLayout"
 import Products from "./pages/admin/Products";
+import AuthorDetail from "./pages/users/AuthorDetail/AuthorDetail";
 import AddBook from "./pages/admin/Products/Addproducts";
 import { ROUTERS } from "./ultils/router";
 import EditBook from "./pages/admin/Products/Editbook";
@@ -21,8 +22,9 @@ const userRoutes = [
   { path: ROUTERS.USER.TESTDETAIL, component: <BookDetail /> },
   { path: ROUTERS.USER.ABOUTUS, component: <AboutUs /> },
   { path: ROUTERS.USER.CART, component: <ShoppingCart /> },
+  { path: ROUTERS.USER.AUTHORDETAIL, component: <AuthorDetail />},
   { path: ROUTERS.USER.ERROR, component: <NotFound /> },
-  {path: ROUTERS.USER.USERINFO,component: <AccountPage />,},
+  { path: ROUTERS.USER.USERINFO,component: <AccountPage />,},
   
 ];
 
