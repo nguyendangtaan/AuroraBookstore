@@ -165,7 +165,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="floatingInput" name="language" placeholder="Ngôn ngữ"
-                                    value="<?php echo e(old('book_price')); ?>">
+                                    value="<?php echo e(old('language')); ?>">
                                     <label for="floatingInput">Ngôn ngữ*</label>
                                     <?php $__errorArgs = ['language'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

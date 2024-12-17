@@ -90,7 +90,7 @@
 
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control @error('language') is-invalid @enderror" id="floatingInput" name="language" placeholder="Ngôn ngữ"
-                                    value="{{old('book_price', $book->book_price)}}">
+                                    value="{{old('language', $book->language)}}">
                                     <label for="floatingInput">Ngôn ngữ*</label>
                                     @error('language')
                                         <span class="invalid-feedback">

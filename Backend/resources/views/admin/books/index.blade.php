@@ -41,7 +41,7 @@
                                         {{$book->category}}
                                     </td>
                                     <td>
-                                        {{$book->author}}
+                                        {{ $book->author ? $book->author->author_name : 'N/A' }}
                                     </td>
                                     <td>{{$book->book_qty}}</td>
                                     <td>{{$book->book_price}}</td>
