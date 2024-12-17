@@ -40,7 +40,7 @@
 
                                     </td>
                                     <td>
-                                        <?php echo e($book->author); ?>
+                                        <?php echo e($book->author ? $book->author->author_name : 'N/A'); ?>
 
                                     </td>
                                     <td><?php echo e($book->book_qty); ?></td>
@@ -51,11 +51,11 @@
                                     <td>
                                         <?php if($book->status): ?>
                                             <span class="badge bg-success p-2">
-                                                In stock
+                                                Đang bán
                                             </span>
                                         <?php else: ?>
                                             <span class="badge bg-danger p-2">
-                                                Out of stock
+                                                Tạm ngưng
                                             </span>
                                         <?php endif; ?>
                                     </td>
