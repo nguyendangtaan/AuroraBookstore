@@ -12,15 +12,16 @@ class BookController extends Controller
 {
     public function index()
     {
-        return response()->json([
-            'data' => Book::with('author')->latest()->get()
-        ]);
+        return BookResource::collection(
+            Book::with(['author'])->latest()->get())
+            ->additional([
+                'author' => Author::has('books')->get(), 
+            ]);
     }
+
 public function categories()
 {
-    dd('Categories method is being called!');
     
-    // Cách bạn đang lấy danh sách thể loại
     $categories = Book::distinct()->pluck('category')->sort()->values();
 
     return response()->json([
@@ -31,14 +32,15 @@ public function categories()
     /**
      * Get product by slug
      */
-    public function show(Book $book)
+    public function show(Book $book_id)
     {
-        if(!$book) {
+        if(!$book_id) {
             abort(404);
         }
         return BookResource::make(
-            $book->load(['author']));
+            $book_id->load(['author']));
     }
+    
 
     /**
      * Filter Books by Author
