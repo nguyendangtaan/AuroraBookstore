@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 60a4410a3cab46b406bcb9456c21b0b00f005b14
 <?php $__env->startSection('title', __('Not Found')); ?>
 <?php $__env->startSection('code', '404'); ?>
 <?php $__env->startSection('message', __('Not Found')); ?>

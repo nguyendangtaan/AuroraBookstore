@@ -36,7 +36,7 @@ const Homepage = () => {
     showRight: true,
   });
 
-  const [authors, setauthors] = useState([]);
+
   const [authorsScroll, setAuthorsScroll] = useState({
     showLeft: false,
     showRight: true,
@@ -106,8 +106,8 @@ const Homepage = () => {
   // gọi API ArrivalsBooks
   const fetchArrivalsBooks = async () => {
     try {
-      const response = await intance.get("/arrivalsbooks");
-      setArrivalsbooks(response.data); 
+      const response = await intance.get("/books");
+      setArrivalsbooks(response.data.data); 
     } catch (error) {
       console.error("Error fetching arrivals books:", error);
     }
@@ -120,8 +120,8 @@ const Homepage = () => {
   // gọi API bestsellers
   const fetchbestsellers = async () => {
     try {
-      const response = await intance.get("/bestsellers");
-      setbestsellers(response.data); 
+      const response = await intance.get("/books");
+      setbestsellers(response.data.data); 
     } catch (error) {
       console.error("Error fetching bestsellers books:", error);
     }
@@ -189,20 +189,20 @@ const Homepage = () => {
               }
             >
               {arrivalsbooks.map((book) => (
-                <Link className="linkdetail" to={`/detail/${book.BID}`}>
-              <Card key={book.BID} className="book-card shadow-sm ">
-                <div className="bookImg"><Card.Img variant="top" src={book.URL} alt={book.BNAME}/></div>
-                <Card.Body className="Card-body">
-                 <div className="cardTittle"> <Card.Title>{book.BNAME}</Card.Title></div>
-                 <div className="cardAuthor"></div> <Card.Text>{book.AUTHOR}</Card.Text>
-                  <div className="card-details d-flex">
-                   <div className="comment"> <FaComment /> {book.COMMENT}</div> 
-                   <div className="danhgia"><FaStar className="start"/> {book.LIKE}</div>
-                  </div>
-                  <p className="price" style={{fontWeight:"bold"}}>{book.PRICE}</p>
-                </Card.Body>
-              </Card>
-              </Link>
+                <Link className="linkdetail" to={`/detail/${book.book_id}`}>
+                  <Card key={book.book_id} className="book-card  ">
+                    <div className="bookImg"><Card.Img variant="top" src={book.thumbnail} alt={book.book_name} /></div>
+                    <Card.Body className="Card-body ">
+                      <div className="cardTittle"> <Card.Title>{book.book_name}</Card.Title></div>
+                      <div className="cardAuthor"></div> <Card.Text>{book.author.author_name}</Card.Text>
+                      <div className="card-details d-flex">
+                        <div className="comment"> <FaComment /> {book.book_qty}</div>
+                        <div className="danhgia"><FaStar className="start" /> {book.page}</div>
+                      </div>
+                      <p className="price" style={{ fontWeight: "bold" }}>{book.book_price}</p>
+                    </Card.Body>
+                  </Card>
+                </Link>
               ))}
             </div>
             {arrivalsScroll.showRight && (
@@ -241,17 +241,17 @@ const Homepage = () => {
               }
             >
               {bestsellers.map((book) => (
-                <Link className="linkdetail" to={`/detail/${book.BID}`}>
-                  <Card key={book.BID} className="book-card  ">
-                    <div className="bookImg"><Card.Img variant="top" src={book.URL} alt={book.BNAME} /></div>
+                <Link className="linkdetail" to={`/detail/${book.book_id}`}>
+                  <Card key={book.book_id} className="book-card  ">
+                    <div className="bookImg"><Card.Img variant="top" src={book.thumbnail} alt={book.book_name} /></div>
                     <Card.Body className="Card-body ">
-                      <div className="cardTittle"> <Card.Title>{book.BNAME}</Card.Title></div>
-                      <div className="cardAuthor"></div> <Card.Text>{book.AUTHOR}</Card.Text>
+                      <div className="cardTittle"> <Card.Title>{book.book_name}</Card.Title></div>
+                      <div className="cardAuthor"></div> <Card.Text>{book.author.author_name}</Card.Text>
                       <div className="card-details d-flex">
-                        <div className="comment"> <FaComment /> {book.COMMENT}</div>
-                        <div className="danhgia"><FaStar className="start" /> {book.LIKE}</div>
+                        <div className="comment"> <FaComment /> {book.book_qty}</div>
+                        <div className="danhgia"><FaStar className="start" /> {book.page}</div>
                       </div>
-                      <p className="price" style={{ fontWeight: "bold" }}>{book.PRICE}</p>
+                      <p className="price" style={{ fontWeight: "bold" }}>{book.book_price}</p>
                     </Card.Body>
                   </Card>
                 </Link>
